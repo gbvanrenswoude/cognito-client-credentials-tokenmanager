@@ -1,4 +1,3 @@
-import { Argv } from 'yargs';
 import TokenManager from '../src/index';
 
 const argv = require('yargs/yargs')(process.argv.slice(2))
