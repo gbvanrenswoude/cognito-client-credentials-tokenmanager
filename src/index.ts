@@ -14,13 +14,20 @@ class TokenManager {
   private tokenEndpoint: string;
   private scope: string;
 
-  constructor(clientId: string, clientSecret: string, tokenEndpoint: string, scope: string) {
+  constructor(
+    clientId: string,
+    clientSecret: string,
+    tokenEndpoint: string,
+    scope: string
+  ) {
     this.clientId = clientId;
     this.clientSecret = clientSecret;
     this.tokenEndpoint = tokenEndpoint;
     this.scope = scope;
 
-    this.fetchToken().catch(err => console.error('Failed to fetch initial token:', err));
+    this.fetchToken().catch((err) =>
+      console.error('Failed to fetch initial token:', err)
+    );
   }
 
   public async getToken(): Promise<string> {
@@ -32,7 +39,7 @@ class TokenManager {
 
   private isTokenExpired(): boolean {
     const now = Math.floor(new Date().getTime() / 1000);
-    return !this.token || (this.token.issued_at + this.token.expires_in) <= now;
+    return !this.token || this.token.issued_at + this.token.expires_in <= now;
   }
 
   private fetchToken(): Promise<void> {
@@ -41,15 +48,15 @@ class TokenManager {
         grant_type: 'client_credentials',
         client_id: this.clientId,
         client_secret: this.clientSecret,
-        scope: this.scope
+        scope: this.scope,
       });
 
       const options = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Length': Buffer.byteLength(postData)
-        }
+          'Content-Length': Buffer.byteLength(postData),
+        },
       };
 
       const req = https.request(this.tokenEndpoint, options, (res) => {
@@ -59,12 +66,23 @@ class TokenManager {
         });
 
         res.on('end', () => {
+          if (res.statusCode !== 200) {
+            if (res.statusCode === 302) {
+              reject(
+                `Received 302 response. Did you forget to set the scope or forgot to suffix the url with /oauth2/token?`
+              );
+              return;
+            } else {
+              reject(`Received non-200 response: ${res.statusCode}`);
+              return;
+            }
+          }
           const response = JSON.parse(data);
           const now = Math.floor(new Date().getTime() / 1000);
           this.token = {
             access_token: response.access_token,
             expires_in: response.expires_in,
-            issued_at: now
+            issued_at: now,
           };
           resolve();
         });
