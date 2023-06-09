@@ -1,6 +1,6 @@
 {
   "name": "aws-cognito-client-credentials-tokenmanager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gbvanrenswoude/cognito-client-credentials-tokenmanager.git"
@@ -13,7 +13,12 @@
   },
   "keywords": [
     "token",
-    "oauth"
+    "oauth",
+    "cognito",
+    "aws",
+    "client",
+    "credentials",
+    "flow"
   ],
   "author": "Gijs van Renswoude",
   "license": "ISC",
