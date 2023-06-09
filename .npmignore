@@ -1,5 +1,6 @@
 # Ignore TypeScript source and configuration files
 **/*.ts
+!**/*.d.ts
 tsconfig.json
 
 # Ignore Test files
