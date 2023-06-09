@@ -1,6 +1,10 @@
 {
-  "name": "cognito-client-credentials-tokenmanager",
+  "name": "aws-cognito-client-credentials-tokenmanager",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gbvanrenswoude/cognito-client-credentials-tokenmanager.git"
+  },
   "description": "Token Manager for AWS Cognito Client Credentials Flow",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
