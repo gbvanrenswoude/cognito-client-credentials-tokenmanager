@@ -4,7 +4,9 @@
       "module": "CommonJS",
       "outDir": "dist",
       "strict": true,
-      "esModuleInterop": true
-    }
+      "esModuleInterop": true,
+      "declaration": true,
+    },
+    "exclude": ["node_modules", "test"],
   }
   

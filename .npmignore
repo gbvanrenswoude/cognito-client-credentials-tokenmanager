@@ -3,6 +3,7 @@
 tsconfig.json
 
 # Ignore Test files
+test/**/*.ts
 test/
 
 # Ignore node modules
