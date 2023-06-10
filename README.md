@@ -16,7 +16,7 @@ Instantiating the Tokenmanager invokes a fetchToken method in the constructor, w
 ## Installation
 
 ```bash
-npm install cognito-client-credentials-tokenmanager
+npm i aws-cognito-client-credentials-tokenmanager
 ```
 
 
