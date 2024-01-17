@@ -23,6 +23,8 @@ npm i aws-cognito-client-credentials-tokenmanager
 ## Usage
 
 ```ts
+import TokenManager from "aws-cognito-client-credentials-tokenmanager";
+
 const tokenManager = new TokenManager(clientId, clientSecret, tokenEndpoint, scope);
 
 async function lambdaHandler() {
